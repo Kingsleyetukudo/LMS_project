@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "Outfit";
+}
+
+form,
+.form2 {
+  @apply flex flex-col gap-4;
+}
+.form-col {
+  @apply flex flex-col gap-1 w-full;
+}
+
+.label-col {
+  @apply text-lg font-normal;
+}
+
+.form-input {
+  @apply p-3 rounded-md outline-none border-2 border-gray-400 bg-transparent;
+}
+
+button {
+  @apply bg-myBlue p-3 mt-2 rounded-md text-myWhite font-medium text-xl lg:text-2xl;
+}
