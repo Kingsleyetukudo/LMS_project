@@ -27,3 +27,23 @@ form,
 button {
   @apply bg-myBlue p-3 mt-2 rounded-md text-myWhite font-medium text-xl lg:text-2xl;
 }
+
+.otp-container {
+  text-align: center;
+  /* margin: 20px auto; */
+  /* max-width: 300px; */
+}
+
+.otp-inputs {
+  @apply flex justify-center gap-2.5;
+}
+
+.otp-box {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  font-size: 18px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  /* @apply w-50 h-50 text-center text-lg rounded-md; */
+}

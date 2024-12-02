@@ -16,6 +16,7 @@ export default {
 
       width: {
         100: "100px",
+        50: "50px",
       },
 
       screens: {
