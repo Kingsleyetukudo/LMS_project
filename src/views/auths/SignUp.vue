@@ -17,7 +17,7 @@
             srcset=""
           />
         </div>
-        <form>
+        <form @submit="createUser">
           <span class="form-col">
             <label for="email" class="label-col">Emaill</label>
             <input
@@ -25,6 +25,7 @@
               id="email"
               placeholder="Enter Email Address"
               class="form-input"
+              v-model="email"
             />
           </span>
           <div class="form2 lg:flex-row justify-between">
@@ -35,6 +36,7 @@
                 id="firstName"
                 placeholder="Enter First Name"
                 class="form-input"
+                v-model="firstName"
               />
             </span>
             <span class="form-col w-1/2">
@@ -44,6 +46,7 @@
                 id="lastName"
                 placeholder="Enter Last Name"
                 class="form-input"
+                v-model="lastName"
               />
             </span>
           </div>
@@ -54,9 +57,10 @@
               id="password"
               placeholder="Enter Password"
               class="form-input"
+              v-model="password"
             />
           </span>
-          <button>Create Account</button>
+          <button type="submit">Create Account</button>
         </form>
         <p class="mt-4 text-center text-sm">
           Already have an account?
@@ -69,6 +73,34 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from "vue";
+
+const email = ref("");
+const firstName = ref("");
+const lastName = ref("");
+const password = ref("");
+
+const createUser = async (e) => {
+  e.preventDefault();
+
+  try {
+    const response = await fetch("http://localhost:8000/api/user/createUser", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: email.value,
+        firstName: firstName.value,
+        lastName: lastName.value,
+        password: password.value,
+      }),
+    });
+    const data = await response.json();
+    console.log("Server Response:", data);
+  } catch (error) {
+    console.error("Error submitting email:", error);
+  }
+};
+</script>
 
 <style lang="scss" scoped></style>

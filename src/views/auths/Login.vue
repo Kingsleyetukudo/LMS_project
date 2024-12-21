@@ -1,6 +1,6 @@
 <template>
   <div class="bg-bgGray h-dvh md:flex items-center justify-center">
-    <div class="md:flex gap-5 items-center lg:w-4/5">
+    <div class="md:flex gap-20 items-center lg:w-4/5">
       <div class="max-sm:hidden md:w-1/2">
         <img src="/src/assets/images/login.svg" alt="" srcset="" />
       </div>
@@ -13,7 +13,7 @@
             srcset=""
           />
         </div>
-        <form>
+        <form @submit="loginUser">
           <span class="form-col">
             <label for="email" class="label-col">Emaill</label>
             <input
@@ -21,6 +21,7 @@
               id="email"
               placeholder="Enter Email Address"
               class="form-input"
+              v-model="email"
             />
           </span>
 
@@ -31,6 +32,7 @@
               id="password"
               placeholder="Enter Password"
               class="form-input"
+              v-model="password"
             />
           </span>
           <p class="mb-5 text-right text-sm">
@@ -54,6 +56,19 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from "vue";
+import { useUserStore } from "../../stores/userStore";
+
+const userStore = useUserStore();
+
+const email = ref("");
+const password = ref("");
+
+const loginUser = (e) => {
+  e.preventDefault();
+  userStore.loginUser(email.value, password.value);
+};
+</script>
 
 <style lang="scss" scoped></style>
