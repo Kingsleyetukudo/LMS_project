@@ -64,8 +64,10 @@
         </form>
         <p class="mt-4 text-center text-sm">
           Already have an account?
-          <a href="#" class="text-base font-medium underline hover:text-myGreen"
-            >Login to LMS</a
+          <router-link
+            to="/login"
+            class="text-base font-medium underline hover:text-myGreen"
+            >Login to LMS</router-link
           >
         </p>
       </div>

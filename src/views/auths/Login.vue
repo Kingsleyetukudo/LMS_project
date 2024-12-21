@@ -36,10 +36,10 @@
             />
           </span>
           <p class="mb-5 text-right text-sm">
-            <a
-              href="#"
+            <router-link
+              to="/forgetpassword"
               class="text-base font-medium underline hover:text-myGreen"
-              >Forget Password?</a
+              >Forget Password?</router-link
             >
           </p>
 
@@ -47,8 +47,10 @@
         </form>
         <p class="mt-4 text-center text-sm">
           Don't have account?
-          <a href="#" class="text-base font-medium underline hover:text-myGreen"
-            >Sign-up to LMS</a
+          <router-link
+            to="/signup"
+            class="text-base font-medium underline hover:text-myGreen"
+            >Sign-up to LMS</router-link
           >
         </p>
       </div>

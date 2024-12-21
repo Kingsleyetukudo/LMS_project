@@ -20,8 +20,10 @@ export const useUserStore = defineStore("userStore", () => {
       });
       const data = await response.json();
       console.log("Server Response:", data);
-      localStorage.setItem("authToken", `${data.token}`);
-      router.push("/");
+      if (data.token) {
+        localStorage.setItem("authToken", `${data.token}`);
+        router.push("/");
+      }
     } catch (error) {
       console.error("Error submitting email:", error);
     }
