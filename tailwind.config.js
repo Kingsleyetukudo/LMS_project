@@ -22,6 +22,9 @@ export default {
       screens: {
         "max-sm": { max: "640px" },
       },
+      lineHeight: {
+        130: "150px",
+      },
     },
   },
   plugins: [],

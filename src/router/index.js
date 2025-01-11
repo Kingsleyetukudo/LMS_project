@@ -5,113 +5,117 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: "/",
-      name: "home",
+      path: "/dashboard",
+      name: "dashboard",
       component: HomeView,
       meta: { requiresAuth: true },
       children: [
         {
-          path: "/about",
+          path: "about",
           name: "about",
           component: () => import("../views/AboutView.vue"),
         },
         {
-          path: "/announcement",
+          path: "announcement",
           name: "announcement",
           component: () => import("../views/Announcement.vue"),
           meta: { requiresAuth: true },
         },
         {
-          path: "/assignment",
+          path: "assignment",
           name: "assignment",
           component: () => import("../views/Assignment.vue"),
           meta: { requiresAuth: true },
         },
         {
-          path: "/attendance",
+          path: "attendance",
           name: "attendance",
           component: () => import("../views/Attendance.vue"),
           meta: { requiresAuth: true },
         },
         {
-          path: "/courses",
+          path: "courses",
           name: "courses",
           component: () => import("../views/Courses.vue"),
           meta: { requiresAuth: true },
         },
         {
-          path: "/examination",
-          name: "examination",
+          path: "examinations",
+          name: "examinations",
           component: () => import("../views/Examination.vue"),
           meta: { requiresAuth: true },
         },
         {
-          path: "/forums",
+          path: "forums",
           name: "forums",
           component: () => import("../views/Forums.vue"),
           meta: { requiresAuth: true },
         },
         {
-          path: "/livechat",
-          name: "livechat",
+          path: "live-chat",
+          name: "live-chat",
           component: () => import("../views/LiveChat.vue"),
           meta: { requiresAuth: true },
         },
         {
-          path: "/live-lectures",
+          path: "live-lectures",
           name: "live-lectures",
           component: () => import("../views/LiveLectures.vue"),
           meta: { requiresAuth: true },
         },
         {
-          path: "/notifications",
+          path: "notifications",
           name: "notifications",
           component: () => import("../views/Notifications.vue"),
           meta: { requiresAuth: true },
         },
         {
-          path: "/past-courses",
+          path: "past-courses",
           name: "past-courses",
           component: () => import("../views/PastCourses.vue"),
           meta: { requiresAuth: true },
         },
         {
-          path: "/progress-tracker",
+          path: "progress-tracker",
           name: "progress-tracker",
           component: () => import("../views/ProgressTracker.vue"),
           meta: { requiresAuth: true },
         },
         {
-          path: "/recorded-lectures",
+          path: "recorded-lectures",
           name: "recorded-lectures",
           component: () => import("../views/RecordedLectures.vue"),
           meta: { requiresAuth: true },
         },
         {
-          path: "/test",
+          path: "test",
           name: "test",
           component: () => import("../views/Test.vue"),
           meta: { requiresAuth: true },
         },
         {
-          path: "/timetable",
+          path: "timetable",
           name: "timetable",
           component: () => import("../views/TimeTable.vue"),
           meta: { requiresAuth: true },
         },
         {
-          path: "/library",
+          path: "library",
           name: "library",
           component: () => import("../views/Library.vue"),
           meta: { requiresAuth: true },
         },
       ],
     },
-
     {
       path: "/signup",
       name: "register",
       component: () => import("../views/auths/SignUp.vue"),
+    },
+    {
+      path: "/count",
+      name: "count",
+      component: () => import("../views/countdown.vue"),
     },
     {
       path: "/login",
@@ -136,11 +140,11 @@ router.beforeEach((to, from, next) => {
   const token = localStorage.getItem("authToken");
 
   if (to.name === "login" && token) {
-    next({ name: "home" });
+    next({ name: "dashboard" }); // Redirect authenticated users to dashboard
   } else if (to.meta.requiresAuth && !token) {
-    next({ name: "login" });
+    next({ name: "login" }); // Redirect unauthenticated users to login
   } else {
-    next();
+    next(); // Proceed to the route
   }
 });
 

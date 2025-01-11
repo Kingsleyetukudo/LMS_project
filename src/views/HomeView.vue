@@ -4,7 +4,11 @@
       <User />
       <SideMenu />
       <div class="main-content">
-        <h1>This is the Home Page :)</h1>
+        <div v-if="$route.path === '/dashboard'">
+          <div>
+            <h1 class="text-2xl font-bold">Dashboard</h1>
+          </div>
+        </div>
         <RouterView />
       </div>
       <Footer />
