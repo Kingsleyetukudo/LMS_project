@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar flex flex-col justify-between gap-8 p-6 shadow-md">
+  <div class="sidebar flex flex-col justify-around gap-8 p-6 shadow-md">
     <div>
       <ul class="flex flex-col gap-2">
         <li>
@@ -9,12 +9,14 @@
           </RouterLink>
         </li>
         <li>
-          <RouterLink to="/dashboard/profile" class="navStyle"
-            >Profile</RouterLink
-          >
+          <RouterLink to="/dashboard/profile" class="navStyle">
+            <img src="../assets/icons/profile.svg" alt="" class="w-5" /> Profile
+          </RouterLink>
         </li>
         <li class="nav-item dropdown" @click="showDropdown('drop1')">
-          <Span class="navStyle">Courses</Span>
+          <Span class="navStyle">
+            <img src="../assets/icons/courses.svg" alt="" class="w-5" /> Courses
+          </Span>
           <ul
             :class="[
               'dropdown-menu',
@@ -30,7 +32,7 @@
                 TimeTable
               </RouterLink>
             </li>
-            <li>
+            <li @click="stayOpen">
               <RouterLink to="/dashboard/courses" class="navStyle">
                 <span class="flex gap-2 font-bold">
                   <img
@@ -42,28 +44,38 @@
                 </span>
               </RouterLink>
             </li>
-            <li>
-              <RouterLink to="/dashboard/past-courses" class="navStyle"
-                >Past Courses</RouterLink
-              >
+            <li @click="stayOpen">
+              <RouterLink to="/dashboard/past-courses" class="navStyle">
+                <img
+                  src="../assets/icons/RegisteredCourses.svg"
+                  alt=""
+                  class="w-5"
+                />
+                Past Courses
+              </RouterLink>
             </li>
-            <li>
-              <RouterLink
-                to="/dashboard/attendance"
-                class="navStyle"
-                @click="closeDropdown"
-                >Attendance</RouterLink
-              >
+            <li @click="stayOpen">
+              <RouterLink to="/dashboard/attendance" class="navStyle">
+                <img src="../assets/icons/Attendance.svg" alt="" class="w-5" />
+                Attendance
+              </RouterLink>
             </li>
-            <li>
-              <RouterLink to="/dashboard/progress-tracker" class="navStyle"
-                >Progress Tracker</RouterLink
+            <li @click="stayOpen">
+              <RouterLink to="/dashboard/progress-tracker" class="navStyle">
+                <img
+                  src="../assets/icons/Progress Tracker.svg"
+                  alt=""
+                  class="w-5"
+                />Progress Tracker</RouterLink
               >
             </li>
           </ul>
         </li>
         <li class="nav-item dropdown" @click="showDropdown('drop3')">
-          <span class="navStyle">Lectures</span>
+          <span class="navStyle">
+            <img src="../assets/icons/lecture.svg" alt="" class="w-5" />
+            Lectures
+          </span>
           <ul
             :class="[
               'dropdown-menu',
@@ -73,26 +85,43 @@
               },
             ]"
           >
-            <li>
-              <RouterLink to="/dashboard/lecture-notes" class="navStyle"
-                >Lecture Notes</RouterLink
-              >
+            <li @click="stayOpen">
+              <RouterLink to="/dashboard/lecture-notes" class="navStyle">
+                <img
+                  src="../assets/icons/lecture-notes.svg"
+                  alt=""
+                  class="w-5"
+                />
+                Lecture Notes
+              </RouterLink>
             </li>
-            <li>
-              <RouterLink to="/dashboard/live-lectures" class="navStyle"
-                >Live Lectures</RouterLink
-              >
+            <li @click="stayOpen">
+              <RouterLink to="/dashboard/live-lectures" class="navStyle">
+                <img
+                  src="../assets/icons/Live Lectures.svg"
+                  alt=""
+                  class="w-5"
+                />
+                Live Lectures
+              </RouterLink>
             </li>
-            <li>
-              <RouterLink to="/dashboard/recorded-lectures" class="navStyle"
-                >Recorded Lectures</RouterLink
-              >
+            <li @click="stayOpen">
+              <RouterLink to="/dashboard/recorded-lectures" class="navStyle">
+                <img
+                  src="../assets/icons/Recorded Lectures.svg"
+                  alt=""
+                  class="w-5"
+                />
+                Recorded Lectures
+              </RouterLink>
             </li>
           </ul>
         </li>
 
         <li class="nav-item dropdown" @click="showDropdown('drop2')">
-          <Span class="navStyle"> Tasks </Span>
+          <Span class="navStyle">
+            <img src="../assets/icons/tasks.svg" alt="" class="w-5" /> Tasks
+          </Span>
           <ul
             v-show="isDropdownOpen"
             class="dropdown-menu"
@@ -105,58 +134,67 @@
             ]"
           >
             <li @click="stayOpen">
-              <RouterLink to="/dashboard/assignment" class="navStyle"
-                >Assignment</RouterLink
-              >
+              <RouterLink to="/dashboard/assignment" class="navStyle">
+                <img src="../assets/icons/Assignment.svg" alt="" class="w-5" />
+                Assignment
+              </RouterLink>
             </li>
-            <li>
-              <RouterLink to="/dashboard/test" class="navStyle"
-                >Test</RouterLink
-              >
+            <li @click="stayOpen">
+              <RouterLink to="/dashboard/test" class="navStyle">
+                <img src="../assets/icons/Exams.svg" alt="" class="w-5" /> Test
+              </RouterLink>
             </li>
-            <li>
-              <RouterLink to="/dashboard/examinations" class="navStyle"
-                >Exams</RouterLink
-              >
+            <li @click="stayOpen">
+              <RouterLink to="/dashboard/examinations" class="navStyle">
+                <img src="../assets/icons/Exams.svg" alt="" class="w-5" /> Exams
+              </RouterLink>
             </li>
           </ul>
         </li>
 
-        <li>
-          <RouterLink to="/dashboard/announcement" class="navStyle"
-            >Announcement</RouterLink
-          >
+        <li @click="closeDropdown">
+          <RouterLink to="/dashboard/announcement" class="navStyle">
+            <img src="../assets/icons/Announcement.svg" alt="" class="w-5" />
+            Announcement
+          </RouterLink>
         </li>
-        <li>
-          <RouterLink to="/dashboard/forums" class="navStyle"
-            >Forums</RouterLink
-          >
+        <li @click="closeDropdown">
+          <RouterLink to="/dashboard/forums" class="navStyle">
+            <img src="../assets/icons/Forums.svg" alt="" class="w-5" /> Forums
+          </RouterLink>
         </li>
-        <li>
-          <RouterLink to="/dashboard/live-chat" class="navStyle"
-            >Live Chat</RouterLink
-          >
+        <li @click="closeDropdown">
+          <RouterLink to="/dashboard/live-chat" class="navStyle">
+            <img src="../assets/icons/Live Chat.svg" alt="" class="w-5" /> Live
+            Chat
+          </RouterLink>
         </li>
-        <li>
-          <RouterLink to="/dashboard/notifications" class="navStyle"
-            >Notifications</RouterLink
-          >
+        <li @click="closeDropdown">
+          <RouterLink to="/dashboard/notifications" class="navStyle">
+            <img src="../assets/icons/Notifications.svg" alt="" class="w-5" />
+            Notifications
+          </RouterLink>
         </li>
 
-        <li>
-          <RouterLink to="/dashboard/library" class="navStyle"
-            >Library</RouterLink
-          >
+        <li @click="closeDropdown">
+          <RouterLink to="/dashboard/library" class="navStyle">
+            <img src="../assets/icons/Library.svg" alt="" class="w-5" /> Library
+          </RouterLink>
         </li>
       </ul>
     </div>
     <div>
       <ul>
-        <li>
-          <RouterLink to="#" class="navStyle">Settings</RouterLink>
+        <li @click="closeDropdown">
+          <RouterLink to="/dashboard/settings" class="navStyle">
+            <img src="../assets/icons/Settings.svg" alt="" class="w-5" />
+            Settings
+          </RouterLink>
         </li>
         <li>
-          <RouterLink to="#" class="navStyle">Log-out</RouterLink>
+          <RouterLink to="/login" class="navStyle">
+            <img src="../assets/icons/Log-out.svg" alt="" class="w-5" /> Log-out
+          </RouterLink>
         </li>
       </ul>
     </div>
