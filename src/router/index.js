@@ -8,7 +8,7 @@ const router = createRouter({
       path: "/dashboard",
       name: "dashboard",
       component: HomeView,
-      meta: { requiresAuth: true },
+      // meta: { requiresAuth: true },
       children: [
         {
           path: "about",
@@ -19,19 +19,19 @@ const router = createRouter({
           path: "announcement",
           name: "announcement",
           component: () => import("../views/Announcement.vue"),
-          meta: { requiresAuth: true },
+          // meta: { requiresAuth: true },
         },
         {
           path: "assignment",
           name: "assignment",
           component: () => import("../views/Assignment.vue"),
-          meta: { requiresAuth: true },
+          // meta: { requiresAuth: true },
         },
         {
           path: "attendance",
           name: "attendance",
           component: () => import("../views/Attendance.vue"),
-          meta: { requiresAuth: true },
+          // meta: { requiresAuth: true },
         },
         {
           path: "courses",

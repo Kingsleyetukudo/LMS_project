@@ -22,7 +22,7 @@ export const useUserStore = defineStore("userStore", () => {
       console.log("Server Response:", data);
       if (data.token) {
         localStorage.setItem("authToken", `${data.token}`);
-        router.push("/");
+        router.push("/dashboard");
       }
     } catch (error) {
       console.error("Error submitting email:", error);

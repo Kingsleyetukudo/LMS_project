@@ -1,13 +1,24 @@
 <template>
-  <div class="header flex items-center justify-between p-6 shadow-md">
+  <div
+    class="header bg-myWhite flex items-center justify-between p-6 shadow-md sticky top-4"
+  >
     <div class="reg-number-col">
-      <h3 class="text-sm md:text-lg">
+      <h3 class="text-sm md:text-lg max-sm:hidden">
         Welcome Back: <span class="font-bold">23165004 </span>
       </h3>
+      <span @click="openSideBar"
+        ><img
+          src="../assets/images/menu-icon.svg"
+          alt=""
+          class="w-6 md:w-6 md:hidden"
+      /></span>
     </div>
     <div class="user-details-col flex gap-5 items-center">
       <span
-        ><img src="../assets/images/menu-icon.svg" alt="" class="w-5 md:w-6"
+        ><img
+          src="../assets/images/menu-icon.svg"
+          alt=""
+          class="w-5 md:w-6 max-sm:hidden"
       /></span>
       <span class="relative"
         ><img
@@ -24,7 +35,7 @@
           ><img
             src="../assets/images/user-icon.svg"
             alt=""
-            class="w-6 md:w-7 border-2 border-gray-300 rounded-full p-0.5"
+            class="w-8 md:w-7 border-2 border-gray-300 rounded-full p-0.5"
         /></span>
         <span
           ><img src="../assets/images/arrow-down.svg" alt="" class="w-2 md:w-3"
@@ -34,6 +45,18 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from "vue";
+
+const isOpen = ref(false);
+const emit = defineEmits(["openSideBar"]);
+
+const openSideBar = () => {
+  isOpen.value = !isOpen.value;
+  emit("openSideBar", isOpen.value);
+
+  console.log(isOpen.value);
+};
+</script>
 
 <style lang="scss" scoped></style>

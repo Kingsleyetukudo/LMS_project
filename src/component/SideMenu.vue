@@ -1,16 +1,38 @@
 <template>
-  <div class="sidebar flex flex-col justify-around gap-8 p-6 shadow-md">
+  <div
+    class="h-dvh flex flex-col justify-around gap-8 md:p-6 shadow-md overflow-auto sticky top-0"
+    :class="openNavBar ? 'opanNav' : 'sidebar'"
+  >
     <div>
       <ul class="flex flex-col gap-2">
+        <!-- <li>
+          <img
+            src="../assets/images/menu-icon.svg"
+            alt=""
+            class="w-7"
+            @click="toggleSidebar"
+          />
+        </li> -->
         <li>
-          <RouterLink to="/dashboard" class="flex gap-2 p-4 font-bold">
-            <img src="../assets/icons/Dashboard.svg" alt="" class="w-5" />
-            Dashboard
+          <RouterLink to="/dashboard" class="navStyle">
+            <img
+              src="../assets/icons/Dashboard.svg"
+              alt=""
+              class="w-5"
+              :class="{ 'icon-large': isCollapsed }"
+            />
+            <p @click="checkhandler">Dashboard</p>
           </RouterLink>
         </li>
         <li>
           <RouterLink to="/dashboard/profile" class="navStyle">
-            <img src="../assets/icons/profile.svg" alt="" class="w-5" /> Profile
+            <img
+              src="../assets/icons/profile.svg"
+              alt=""
+              class="w-5"
+              :class="{ 'icon-large': isCollapsed }"
+            />
+            Profile
           </RouterLink>
         </li>
         <li class="nav-item dropdown" @click="showDropdown('drop1')">
@@ -34,14 +56,14 @@
             </li>
             <li @click="stayOpen">
               <RouterLink to="/dashboard/courses" class="navStyle">
-                <span class="flex gap-2 font-bold">
-                  <img
-                    src="../assets/icons/RegisteredCourses.svg"
-                    alt=""
-                    class="w-5"
-                  />
-                  Courses
-                </span>
+                <!-- <span class="flex gap-2 font-bold"> -->
+                <img
+                  src="../assets/icons/RegisteredCourses.svg"
+                  alt=""
+                  class="w-5"
+                />
+                Courses
+                <!-- </span> -->
               </RouterLink>
             </li>
             <li @click="stayOpen">
@@ -165,8 +187,8 @@
         </li>
         <li @click="closeDropdown">
           <RouterLink to="/dashboard/live-chat" class="navStyle">
-            <img src="../assets/icons/Live Chat.svg" alt="" class="w-5" /> Live
-            Chat
+            <img src="../assets/icons/Live Chat.svg" alt="" class="w-5" />
+            <p class="text-center">Live Chat</p>
           </RouterLink>
         </li>
         <li @click="closeDropdown">
@@ -205,7 +227,15 @@
 import { ref } from "vue";
 import { RouterLink } from "vue-router";
 
+const props = defineProps({
+  openNavBar: {
+    type: Boolean,
+    required: true,
+  },
+});
+
 const isDropdownOpen = ref(false);
+const isCollapsed = ref(false);
 
 function showDropdown(drop) {
   console.log(drop);
@@ -220,9 +250,28 @@ const stayOpen = (event) => {
   event.stopPropagation(); // Prevent event bubbling
 };
 
+const toggleSidebar = () => {
+  isCollapsed.value = !isCollapsed.value;
+};
+
 // function hideDropdown() {
 //   isDropdownOpen.value = false;
 // }
+
+const checkhandler = () => {
+  console.log(props.openNavBar);
+};
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+.sidebar.collapsed {
+  width: 100px;
+  padding: 10px;
+}
+
+.icon-large {
+  width: 40px;
+  flex-direction: column;
+  align-items: center;
+}
+</style>
