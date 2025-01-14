@@ -1,25 +1,17 @@
 <template>
   <div
-    class="h-dvh flex flex-col justify-around gap-8 md:p-6 shadow-md overflow-auto sticky top-0"
+    class="h-dvh flex flex-col justify-between gap-8 md:p-6 shadow-md overflow-auto sticky top-0"
     :class="openNavBar ? 'opanNav' : 'sidebar'"
   >
     <div>
       <ul class="flex flex-col gap-2">
-        <!-- <li>
-          <img
-            src="../assets/images/menu-icon.svg"
-            alt=""
-            class="w-7"
-            @click="toggleSidebar"
-          />
-        </li> -->
         <li>
           <RouterLink to="/dashboard" class="navStyle">
             <img
               src="../assets/icons/Dashboard.svg"
               alt=""
               class="w-5"
-              :class="{ 'icon-large': isCollapsed }"
+              :class="{ 'icon-large': openNavBar }"
             />
             <p @click="checkhandler">Dashboard</p>
           </RouterLink>
@@ -30,14 +22,20 @@
               src="../assets/icons/profile.svg"
               alt=""
               class="w-5"
-              :class="{ 'icon-large': isCollapsed }"
+              :class="{ 'icon-large': openNavBar }"
             />
             Profile
           </RouterLink>
         </li>
         <li class="nav-item dropdown" @click="showDropdown('drop1')">
           <Span class="navStyle">
-            <img src="../assets/icons/courses.svg" alt="" class="w-5" /> Courses
+            <img
+              src="../assets/icons/courses.svg"
+              alt=""
+              class="w-5"
+              :class="{ 'icon-large': openNavBar }"
+            />
+            Courses
           </Span>
           <ul
             :class="[
@@ -61,6 +59,7 @@
                   src="../assets/icons/RegisteredCourses.svg"
                   alt=""
                   class="w-5"
+                  :class="{ 'icon-large': openNavBar }"
                 />
                 Courses
                 <!-- </span> -->
@@ -72,13 +71,19 @@
                   src="../assets/icons/RegisteredCourses.svg"
                   alt=""
                   class="w-5"
+                  :class="{ 'icon-large': openNavBar }"
                 />
-                Past Courses
+                <p>Past Courses</p>
               </RouterLink>
             </li>
             <li @click="stayOpen">
               <RouterLink to="/dashboard/attendance" class="navStyle">
-                <img src="../assets/icons/Attendance.svg" alt="" class="w-5" />
+                <img
+                  src="../assets/icons/Attendance.svg"
+                  alt=""
+                  class="w-5"
+                  :class="{ 'icon-large': openNavBar }"
+                />
                 Attendance
               </RouterLink>
             </li>
@@ -88,14 +93,21 @@
                   src="../assets/icons/Progress Tracker.svg"
                   alt=""
                   class="w-5"
-                />Progress Tracker</RouterLink
-              >
+                  :class="{ 'icon-large': openNavBar }"
+                />
+                <p>Progress Tracker</p>
+              </RouterLink>
             </li>
           </ul>
         </li>
         <li class="nav-item dropdown" @click="showDropdown('drop3')">
           <span class="navStyle">
-            <img src="../assets/icons/lecture.svg" alt="" class="w-5" />
+            <img
+              src="../assets/icons/lecture.svg"
+              alt=""
+              class="w-5"
+              :class="{ 'icon-large': openNavBar }"
+            />
             Lectures
           </span>
           <ul
@@ -113,6 +125,7 @@
                   src="../assets/icons/lecture-notes.svg"
                   alt=""
                   class="w-5"
+                  :class="{ 'icon-large': openNavBar }"
                 />
                 Lecture Notes
               </RouterLink>
@@ -123,6 +136,7 @@
                   src="../assets/icons/Live Lectures.svg"
                   alt=""
                   class="w-5"
+                  :class="{ 'icon-large': openNavBar }"
                 />
                 Live Lectures
               </RouterLink>
@@ -133,6 +147,7 @@
                   src="../assets/icons/Recorded Lectures.svg"
                   alt=""
                   class="w-5"
+                  :class="{ 'icon-large': openNavBar }"
                 />
                 Recorded Lectures
               </RouterLink>
@@ -142,7 +157,13 @@
 
         <li class="nav-item dropdown" @click="showDropdown('drop2')">
           <Span class="navStyle">
-            <img src="../assets/icons/tasks.svg" alt="" class="w-5" /> Tasks
+            <img
+              src="../assets/icons/tasks.svg"
+              alt=""
+              class="w-5"
+              :class="{ 'icon-large': openNavBar }"
+            />
+            Tasks
           </Span>
           <ul
             v-show="isDropdownOpen"
@@ -157,18 +178,35 @@
           >
             <li @click="stayOpen">
               <RouterLink to="/dashboard/assignment" class="navStyle">
-                <img src="../assets/icons/Assignment.svg" alt="" class="w-5" />
+                <img
+                  src="../assets/icons/Assignment.svg"
+                  alt=""
+                  class="w-5"
+                  :class="{ 'icon-large': openNavBar }"
+                />
                 Assignment
               </RouterLink>
             </li>
             <li @click="stayOpen">
               <RouterLink to="/dashboard/test" class="navStyle">
-                <img src="../assets/icons/Exams.svg" alt="" class="w-5" /> Test
+                <img
+                  src="../assets/icons/Exams.svg"
+                  alt=""
+                  class="w-5"
+                  :class="{ 'icon-large': openNavBar }"
+                />
+                Test
               </RouterLink>
             </li>
             <li @click="stayOpen">
               <RouterLink to="/dashboard/examinations" class="navStyle">
-                <img src="../assets/icons/Exams.svg" alt="" class="w-5" /> Exams
+                <img
+                  src="../assets/icons/Exams.svg"
+                  alt=""
+                  class="w-5"
+                  :class="{ 'icon-large': openNavBar }"
+                />
+                Exams
               </RouterLink>
             </li>
           </ul>
@@ -176,31 +214,58 @@
 
         <li @click="closeDropdown">
           <RouterLink to="/dashboard/announcement" class="navStyle">
-            <img src="../assets/icons/Announcement.svg" alt="" class="w-5" />
+            <img
+              src="../assets/icons/Announcement.svg"
+              alt=""
+              class="w-5"
+              :class="{ 'icon-large': openNavBar }"
+            />
             Announcement
           </RouterLink>
         </li>
         <li @click="closeDropdown">
           <RouterLink to="/dashboard/forums" class="navStyle">
-            <img src="../assets/icons/Forums.svg" alt="" class="w-5" /> Forums
+            <img
+              src="../assets/icons/Forums.svg"
+              alt=""
+              class="w-5"
+              :class="{ 'icon-large': openNavBar }"
+            />
+            Forums
           </RouterLink>
         </li>
         <li @click="closeDropdown">
           <RouterLink to="/dashboard/live-chat" class="navStyle">
-            <img src="../assets/icons/Live Chat.svg" alt="" class="w-5" />
+            <img
+              src="../assets/icons/Live Chat.svg"
+              alt=""
+              class="w-5"
+              :class="{ 'icon-large': openNavBar }"
+            />
             <p class="text-center">Live Chat</p>
           </RouterLink>
         </li>
         <li @click="closeDropdown">
           <RouterLink to="/dashboard/notifications" class="navStyle">
-            <img src="../assets/icons/Notifications.svg" alt="" class="w-5" />
+            <img
+              src="../assets/icons/Notifications.svg"
+              alt=""
+              class="w-5"
+              :class="{ 'icon-large': openNavBar }"
+            />
             Notifications
           </RouterLink>
         </li>
 
         <li @click="closeDropdown">
           <RouterLink to="/dashboard/library" class="navStyle">
-            <img src="../assets/icons/Library.svg" alt="" class="w-5" /> Library
+            <img
+              src="../assets/icons/Library.svg"
+              alt=""
+              class="w-5"
+              :class="{ 'icon-large': openNavBar }"
+            />
+            Library
           </RouterLink>
         </li>
       </ul>
@@ -209,13 +274,24 @@
       <ul>
         <li @click="closeDropdown">
           <RouterLink to="/dashboard/settings" class="navStyle">
-            <img src="../assets/icons/Settings.svg" alt="" class="w-5" />
+            <img
+              src="../assets/icons/Settings.svg"
+              alt=""
+              class="w-5"
+              :class="{ 'icon-large': openNavBar }"
+            />
             Settings
           </RouterLink>
         </li>
         <li>
           <RouterLink to="/login" class="navStyle">
-            <img src="../assets/icons/Log-out.svg" alt="" class="w-5" /> Log-out
+            <img
+              src="../assets/icons/Log-out.svg"
+              alt=""
+              class="w-5"
+              :class="{ 'icon-large': openNavBar }"
+            />
+            Log-out
           </RouterLink>
         </li>
       </ul>
@@ -270,7 +346,7 @@ const checkhandler = () => {
 }
 
 .icon-large {
-  width: 40px;
+  width: 25px;
   flex-direction: column;
   align-items: center;
 }

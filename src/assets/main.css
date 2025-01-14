@@ -71,6 +71,10 @@ button {
 .navStyle {
   @apply flex flex-col  items-center max-sm:text-sm md:flex-row gap-2 p-3 md:p-4 font-bold cursor-pointer hover:bg-bgGray;
 }
+
+.navStyle p {
+  @apply text-center;
+}
 .router-link-active {
   @apply bg-gray-200;
 }
