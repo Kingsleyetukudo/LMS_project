@@ -1,6 +1,8 @@
 <template>
   <footer class="footer">
-    <h3>Footer line</h3>
+    <p>
+      copyright &copy; {{ new Date().getFullYear() }} LMS. All rights reserved.
+    </p>
   </footer>
 </template>
 

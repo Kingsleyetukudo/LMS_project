@@ -1,6 +1,6 @@
 <template>
   <div
-    class="h-dvh flex flex-col justify-between gap-8 md:p-6 shadow-md overflow-auto sticky top-0"
+    class="flex flex-col justify-between mt-10 max-sm:mt-0 shadow-md overflow-auto sticky top-0"
     :class="openNavBar ? 'opanNav' : 'sidebar'"
   >
     <div>
@@ -74,6 +74,17 @@
                   :class="{ 'icon-large': openNavBar }"
                 />
                 <p>Past Courses</p>
+              </RouterLink>
+            </li>
+            <li @click="stayOpen">
+              <RouterLink to="/dashboard/past-courses" class="navStyle">
+                <img
+                  src="../assets/icons/RegisteredCourses.svg"
+                  alt=""
+                  class="w-5"
+                  :class="{ 'icon-large': openNavBar }"
+                />
+                <p>Registered Courses</p>
               </RouterLink>
             </li>
             <li @click="stayOpen">
@@ -270,8 +281,8 @@
         </li>
       </ul>
     </div>
-    <div>
-      <ul>
+    <div class="border-t-2 border-gray-300 pt-4 mt-4">
+      <ul class="flex flex-col gap-2">
         <li @click="closeDropdown">
           <RouterLink to="/dashboard/settings" class="navStyle">
             <img
@@ -283,16 +294,17 @@
             Settings
           </RouterLink>
         </li>
-        <li>
-          <RouterLink to="/login" class="navStyle">
-            <img
-              src="../assets/icons/Log-out.svg"
-              alt=""
-              class="w-5"
-              :class="{ 'icon-large': openNavBar }"
-            />
-            Log-out
-          </RouterLink>
+        <li
+          class="flex gap-2 p-4 items-center hover:bg-gray-200 font-bold cursor-pointer max-sm:flex-col"
+          @click="logout"
+        >
+          <img
+            src="../assets/icons/Log-out.svg"
+            alt=""
+            class="w-5"
+            :class="{ 'icon-large': openNavBar }"
+          />
+          Log-out
         </li>
       </ul>
     </div>
@@ -302,6 +314,9 @@
 <script setup>
 import { ref } from "vue";
 import { RouterLink } from "vue-router";
+import { useUserStore } from "../stores/userStore";
+
+const userStore = useUserStore();
 
 const props = defineProps({
   openNavBar: {
@@ -336,6 +351,10 @@ const toggleSidebar = () => {
 
 const checkhandler = () => {
   console.log(props.openNavBar);
+};
+
+const logout = () => {
+  userStore.logoutUser();
 };
 </script>
 

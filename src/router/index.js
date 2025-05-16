@@ -6,10 +6,16 @@ const router = createRouter({
   routes: [
     {
       path: "/dashboard",
-      name: "dashboard",
+
       component: HomeView,
       // meta: { requiresAuth: true },
       children: [
+        {
+          path: "",
+          name: "StudentDashboard",
+          component: () => import("../views/StudentDashBoard.vue"),
+          meta: { requiresAuth: true },
+        },
         {
           path: "about",
           name: "about",

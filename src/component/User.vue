@@ -1,6 +1,6 @@
 <template>
   <div
-    class="header bg-myWhite flex items-center justify-between p-6 shadow-md sticky top-4"
+    class="header bg-myWhite flex items-center justify-between py-6 px-10 shadow-md sticky top-4"
   >
     <div class="reg-number-col">
       <h3 class="text-sm md:text-lg max-sm:hidden">

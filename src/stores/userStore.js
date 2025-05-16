@@ -29,5 +29,14 @@ export const useUserStore = defineStore("userStore", () => {
     }
   };
 
-  return { user, loginUser };
+  const logoutUser = () => {
+    try {
+      localStorage.removeItem("authToken");
+      router.push("/login");
+    } catch (error) {
+      console.error("Error logging out:", error);
+    }
+  };
+
+  return { user, loginUser, logoutUser };
 });

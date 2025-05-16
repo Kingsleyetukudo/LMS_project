@@ -48,7 +48,7 @@ button {
 
 .dashboard {
   /* @apply grid grid-cols-1col md:grid-cols-2col; */
-  @apply grid-layout  grid-rows-[auto_1fr_auto] min-h-dvh md:grid-cols-[250px_1fr] transition-grid-cols duration-300 ease-in-out;
+  @apply grid-layout  grid-rows-[auto_1fr_auto] min-h-dvh md:grid-cols-[270px_1fr] transition-grid-cols duration-300 ease-in-out;
 }
 
 .opanNav {
@@ -69,11 +69,11 @@ button {
 /* Side bar nav style start here */
 
 .navStyle {
-  @apply flex flex-col  items-center max-sm:text-sm md:flex-row gap-2 p-3 md:p-4 font-bold cursor-pointer hover:bg-bgGray;
+  @apply flex flex-col  items-center max-sm:text-sm md:flex-row gap-2 p-3 md:px-6 md:py-4 font-bold cursor-pointer hover:bg-bgGray;
 }
 
 .navStyle p {
-  @apply text-center;
+  @apply max-sm:text-center;
 }
 .router-link-active {
   @apply bg-gray-200;
@@ -140,4 +140,5 @@ button {
 
 .footer {
   grid-area: footer;
+  @apply flex justify-center items-center bg-gray-200 p-4;
 }
