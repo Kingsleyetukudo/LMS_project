@@ -65,17 +65,7 @@
                 <!-- </span> -->
               </RouterLink>
             </li>
-            <li @click="stayOpen">
-              <RouterLink to="/dashboard/past-courses" class="navStyle">
-                <img
-                  src="../assets/icons/RegisteredCourses.svg"
-                  alt=""
-                  class="w-5"
-                  :class="{ 'icon-large': openNavBar }"
-                />
-                <p>Past Courses</p>
-              </RouterLink>
-            </li>
+
             <li @click="stayOpen">
               <RouterLink to="/dashboard/past-courses" class="navStyle">
                 <img

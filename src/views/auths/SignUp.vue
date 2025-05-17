@@ -77,6 +77,14 @@
 
 <script setup>
 import { ref } from "vue";
+import { useUserStore } from "../../stores/userStore";
+import { useRouter } from "vue-router";
+import { useToast } from "@/composables/useToast";
+
+const { showToast } = useToast();
+
+const userStore = useUserStore();
+const router = useRouter();
 
 const email = ref("");
 const firstName = ref("");
@@ -86,19 +94,23 @@ const password = ref("");
 const createUser = async (e) => {
   e.preventDefault();
 
+  console.log("firstName:", firstName.value, typeof firstName.value);
+  console.log("lastName:", lastName.value, typeof lastName.value);
+
   try {
-    const response = await fetch("http://localhost:8000/api/user/createUser", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email: email.value,
-        firstName: firstName.value,
-        lastName: lastName.value,
-        password: password.value,
-      }),
-    });
-    const data = await response.json();
-    console.log("Server Response:", data);
+    const response = await userStore.createUser(
+      email.value,
+      firstName.value,
+      lastName.value,
+      password.value
+    );
+
+    showToast(
+      `Thank you for signing-up to our long disstand program. 
+    Signup successful!
+    Check your mail for further instrustions.`,
+      "success"
+    );
   } catch (error) {
     console.error("Error submitting email:", error);
   }

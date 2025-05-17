@@ -8,6 +8,30 @@ export const useUserStore = defineStore("userStore", () => {
 
   // actions section of user store
 
+  const createUser = async (email, firstName, lastName, password) => {
+    try {
+      const response = await fetch(`${baseURI}user/createUser`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+          firstName,
+          lastName,
+          password,
+        }),
+      });
+      const data = await response.json();
+      console.log("Server Response:", data);
+      if (data.token) {
+        // localStorage.setItem("authToken", `${data.token}`);
+      }
+      router.push("/login");
+      return data;
+    } catch (error) {
+      console.error("Error submitting email:", error);
+    }
+  };
+
   const loginUser = async (email, password) => {
     try {
       const response = await fetch(`${baseURI}user/login`, {
@@ -38,5 +62,5 @@ export const useUserStore = defineStore("userStore", () => {
     }
   };
 
-  return { user, loginUser, logoutUser };
+  return { user, createUser, loginUser, logoutUser };
 });

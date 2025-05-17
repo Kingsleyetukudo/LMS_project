@@ -13,7 +13,7 @@
       <User @openSideBar="handleSideBar" class="w-full px-4 py-2" />
 
       <!-- Content -->
-      <div class="flex-1 overflow-y-auto p-4">
+      <div class="flex-1 overflow-y-auto p-4 my-5">
         <RouterView />
       </div>
 
@@ -24,9 +24,9 @@
 </template>
 
 <script setup>
-import User from "@/component/User.vue";
-import SideMenu from "@/component/SideMenu.vue";
-import Footer from "@/component/Footer.vue";
+import User from "@/components/User.vue";
+import SideMenu from "@/components/SideMenu.vue";
+import Footer from "@/components/Footer.vue";
 import { ref } from "vue";
 
 const toggleSidebar = ref(true);
