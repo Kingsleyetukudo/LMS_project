@@ -62,5 +62,21 @@ export const useUserStore = defineStore("userStore", () => {
     }
   };
 
-  return { user, createUser, loginUser, logoutUser };
+  const verifyUser = async (token) => {
+    try {
+      const response = await fetch(`${baseURI}user/verify/${token}`, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      });
+      const data = await response.json();
+      console.log("Verification Response:", data);
+      if (data.success) {
+        router.push("/login");
+      }
+    } catch (error) {
+      console.error("Error verifying user:", error);
+    }
+  };
+
+  return { user, createUser, loginUser, logoutUser, verifyUser };
 });

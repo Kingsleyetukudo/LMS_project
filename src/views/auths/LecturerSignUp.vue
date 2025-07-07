@@ -2,11 +2,7 @@
   <div class="bg-bgGray h-dvh md:flex items-center justify-center">
     <div class="md:flex gap-5 items-center lg:w-4/5">
       <div class="max-sm:hidden md:w-1/2">
-        <img
-          src="/src//assets/images/undraw_learning_re_32qv.svg"
-          alt=""
-          srcset=""
-        />
+        <img src="/src//assets/images/lecturer-icon.svg" alt="" srcset="" />
       </div>
       <div class="w-screen p-4 flex flex-col gap-3 md:w-1/2">
         <div class="flex items-center justify-center">

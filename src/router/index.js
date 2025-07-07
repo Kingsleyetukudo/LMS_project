@@ -5,6 +5,10 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
+      path: "/",
+      redirect: "/login",
+    },
+    {
       path: "/dashboard",
 
       component: HomeView,
@@ -119,10 +123,21 @@ const router = createRouter({
         },
       ],
     },
+
     {
       path: "/signup",
-      name: "register",
+      name: "RoleSelect",
+      component: () => import("../views/auths/RoleSelect.vue"),
+    },
+    {
+      path: "/signup/student",
+      name: "registerStudent",
       component: () => import("../views/auths/SignUp.vue"),
+    },
+    {
+      path: "/signup/lecturer",
+      name: "registerLecturer",
+      component: () => import("../views/auths/LecturerSignUp.vue"),
     },
     {
       path: "/count",
@@ -133,6 +148,20 @@ const router = createRouter({
       path: "/login",
       name: "login",
       component: () => import("../views/auths/Login.vue"),
+      meta: { requiresAuth: false },
+    },
+
+    {
+      path: "/registration-form/:userId",
+      name: "registration-form",
+      component: () => import("../components/Student-Registration-Form.vue"),
+      meta: { requiresAuth: false },
+      props: true,
+    },
+    {
+      path: "/verify/:token",
+      name: "verify",
+      component: () => import("../views/auths/Verify.vue"),
       meta: { requiresAuth: false },
     },
     {
@@ -151,7 +180,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const token = localStorage.getItem("authToken");
 
-  if (to.name === "login" && token) {
+  if ((to.name === "login" || to.name === "register") && token) {
     next({ name: "dashboard" }); // Redirect authenticated users to dashboard
   } else if (to.meta.requiresAuth && !token) {
     next({ name: "login" }); // Redirect unauthenticated users to login
